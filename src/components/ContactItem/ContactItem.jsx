@@ -8,7 +8,7 @@ export default function ContactItem({ id, name, number, onDeleteContact }) {
         <ContactItemWrapper>
             <ContactItemName>{name}</ContactItemName>
             <ContactItemNum href={`tel:${number}`}>{number}</ContactItemNum>
-            <DeleteBtn type='button' onClick={() => onDeleteContact(id)}>
+            <DeleteBtn type='button' onClick={() => onDeleteContact(id)} aria-label="Delete contact">
                 <IconContext.Provider value={{ size: "2em" }}>
                     <FaTrashAlt />
                 </IconContext.Provider>

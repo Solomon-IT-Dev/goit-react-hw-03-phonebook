@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import initialContacts from 'data/initialContacts';
 import AppName from 'components/AppName';
 import ContactForm from 'components/ContactForm';
 import SectionName from 'components/SectionName';
@@ -12,8 +11,26 @@ import { AppContainer } from './App.styled';
 
 class App extends Component {
   state = {
-    contacts: initialContacts,
+    contacts: [],
     filter: '',
+  };
+
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    const nextContacts = this.state.contacts;
+    const prevContacts = prevState.contacts;
+
+    if (nextContacts !== prevContacts) {
+      localStorage.setItem('contacts', JSON.stringify(nextContacts));      
+    };
   };
 
   addContactToList = ({name, number}) => {
