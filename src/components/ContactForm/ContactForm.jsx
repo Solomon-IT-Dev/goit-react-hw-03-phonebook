@@ -10,8 +10,7 @@ const FORM_INITIAL_STATE = {
 
 class ContactForm extends Component {
   state = {
-    name: '',
-    number: '',
+    ...FORM_INITIAL_STATE
   };
 
     nameInputId = nanoid();
